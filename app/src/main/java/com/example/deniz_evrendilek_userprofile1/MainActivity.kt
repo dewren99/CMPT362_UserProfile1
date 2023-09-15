@@ -1,36 +1,92 @@
 package com.example.deniz_evrendilek_userprofile1
 
-import android.app.Activity
+import android.app.PendingIntent.getActivity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.os.Bundle
-import android.provider.MediaStore
 import android.provider.MediaStore.ACTION_IMAGE_CAPTURE
 import android.widget.Button
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+
+
+const val REQUEST_IMAGE_CAPTURE = 1
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var profilePicImageView: ImageView
+    private lateinit var selectImageButton: Button
+    private lateinit var saveInfoButton: Button
+    private lateinit var cancelSaveInfoButton: Button
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        maybeRequestCameraPermission()
+        setupViewVariables()
+    }
+
+    private fun hasCameraPermission(): Boolean {
+        return ActivityCompat.checkSelfPermission(
+            applicationContext,
+            android.Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun maybeRequestCameraPermission() {
+        if (!hasCameraPermission()) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(android.Manifest.permission.CAMERA),
+                REQUEST_IMAGE_CAPTURE
+            )
+        }
+    }
+
+    private fun setupViewVariables() {
+        selectImageButton = findViewById(R.id.select_picture_button)
+        saveInfoButton = findViewById(R.id.button_save_info)
+        cancelSaveInfoButton = findViewById(R.id.button_cancel_save_info)
+        profilePicImageView = findViewById(R.id.image_view_profile_picture)
+
         addButtonListeners()
     }
 
-    private fun addButtonListeners() {
-        val selectImageButton: Button = findViewById(R.id.select_picture_button)
-        val saveInfoButton: Button = findViewById(R.id.button_save_info)
-        val cancelSaveInfoButton: Button = findViewById(R.id.button_cancel_save_info)
+    private fun exitApp() {
+        finishAndRemoveTask()
+    }
 
+    private fun addButtonListeners() {
         selectImageButton.setOnClickListener() {
+            if (!hasCameraPermission()) {
+                exitApp()
+            }
+
             println("Select Image")
+            val takePicIntent = Intent(ACTION_IMAGE_CAPTURE)
+            startActivityForResult(takePicIntent, REQUEST_IMAGE_CAPTURE)
+
         }
         saveInfoButton.setOnClickListener() {
             println("Save Info")
         }
         cancelSaveInfoButton.setOnClickListener() {
             println("Cancel Save Info")
+        }
+    }
+
+    /**
+     * @source https://developer.android.com/training/camera-deprecated/photobasics
+     */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            val imageBitmap = data?.extras?.get("data") as Bitmap
+            profilePicImageView.setImageBitmap(imageBitmap)
         }
     }
 }
