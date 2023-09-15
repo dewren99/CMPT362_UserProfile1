@@ -1,6 +1,5 @@
 package com.example.deniz_evrendilek_userprofile1
 
-import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -8,10 +7,8 @@ import android.os.Bundle
 import android.provider.MediaStore.ACTION_IMAGE_CAPTURE
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 
 
 const val REQUEST_IMAGE_CAPTURE = 1
@@ -62,20 +59,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addButtonListeners() {
-        selectImageButton.setOnClickListener() {
+        selectImageButton.setOnClickListener {
             if (!hasCameraPermission()) {
                 exitApp()
             }
 
             println("Select Image")
             val takePicIntent = Intent(ACTION_IMAGE_CAPTURE)
+            @Suppress("DEPRECATION")
             startActivityForResult(takePicIntent, REQUEST_IMAGE_CAPTURE)
 
         }
-        saveInfoButton.setOnClickListener() {
+        saveInfoButton.setOnClickListener {
             println("Save Info")
         }
-        cancelSaveInfoButton.setOnClickListener() {
+        cancelSaveInfoButton.setOnClickListener {
             println("Cancel Save Info")
         }
     }
@@ -83,9 +81,11 @@ class MainActivity : AppCompatActivity() {
     /**
      * @source https://developer.android.com/training/camera-deprecated/photobasics
      */
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
+            @Suppress("DEPRECATION") val imageBitmap = data?.extras?.get("data") as Bitmap
             profilePicImageView.setImageBitmap(imageBitmap)
         }
     }
