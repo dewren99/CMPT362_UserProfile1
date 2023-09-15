@@ -15,9 +15,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        addButtonListeners()
+    }
+
+    private fun addButtonListeners() {
         val selectImageButton: Button = findViewById(R.id.select_picture_button)
+        val saveInfoButton: Button = findViewById(R.id.button_save_info)
+        val cancelSaveInfoButton: Button = findViewById(R.id.button_cancel_save_info)
+
         selectImageButton.setOnClickListener() {
             println("Select Image")
+        }
+        saveInfoButton.setOnClickListener() {
+            println("Save Info")
+        }
+        cancelSaveInfoButton.setOnClickListener() {
+            println("Cancel Save Info")
         }
     }
 }
