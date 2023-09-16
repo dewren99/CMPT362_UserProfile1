@@ -6,7 +6,10 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore.ACTION_IMAGE_CAPTURE
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 
@@ -58,6 +61,25 @@ class MainActivity : AppCompatActivity() {
         finishAndRemoveTask()
     }
 
+    private fun getFormValues() {
+        val inputName: EditText = findViewById(R.id.input_name)
+        val inputEmail: EditText = findViewById(R.id.input_email)
+        val inputPhone: EditText = findViewById(R.id.input_phone)
+        val radioGroupGender: RadioGroup = findViewById(R.id.radio_group_gender)
+        val inputClass: EditText = findViewById(R.id.input_class)
+        val inputMajor: EditText = findViewById(R.id.input_major)
+        println(
+            "" +
+                    "${inputName.text}, " +
+                    "${inputEmail.text}, " +
+                    "${inputPhone.text}, " +
+                    "${radioGroupGender.checkedRadioButtonId}, " +
+                    "${inputClass.text}, " +
+                    "${inputMajor.text}" +
+                    ""
+        )
+    }
+
     private fun addButtonListeners() {
         selectImageButton.setOnClickListener {
             if (!hasCameraPermission()) {
@@ -72,6 +94,7 @@ class MainActivity : AppCompatActivity() {
         }
         saveInfoButton.setOnClickListener {
             println("Save Info")
+            getFormValues()
         }
         cancelSaveInfoButton.setOnClickListener {
             println("Cancel Save Info")
