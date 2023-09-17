@@ -1,5 +1,6 @@
 package com.example.deniz_evrendilek_userprofile1
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -86,6 +87,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("ApplySharedPref")
     private fun saveProfile() {
         // TODO
         val sharedPref = getPreferences(Context.MODE_PRIVATE)

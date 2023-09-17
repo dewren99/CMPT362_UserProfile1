@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -13,7 +12,8 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -50,11 +50,12 @@
                 android:id="@+id/input_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:height="50dp"
                 android:autofillHints="name"
                 android:hint="@string/name_input_hint"
                 android:inputType="text"
-                android:maxWidth="488dp" />
+                android:maxWidth="488dp"
+                android:textColorHint="#8D6E63"
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -73,11 +74,12 @@
                 android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:height="50dp"
                 android:hint="@string/email_input_hint"
                 android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
-                android:maxWidth="488dp" />
+                android:maxWidth="488dp"
+                android:textColorHint="#8D6E63"
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -96,11 +98,12 @@
                 android:id="@+id/input_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:height="50dp"
                 android:autofillHints="phone"
                 android:hint="@string/phone_number_input_hint"
                 android:inputType="phone"
-                android:maxWidth="488dp" />
+                android:maxWidth="488dp"
+                android:textColorHint="#8D6E63"
+                android:textSize="20sp" />
         </LinearLayout>
 
         <RadioGroup
@@ -119,15 +122,18 @@
                 android:id="@+id/radio_gender_female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
                 android:onClick="onRadioButtonClicked"
-                android:text="@string/female_radio_label" />
+                android:text="@string/female_radio_label"
+                android:textSize="20sp" />
 
             <RadioButton
                 android:id="@+id/radio_gender_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onRadioButtonClicked"
-                android:text="@string/male_radio_label" />
+                android:text="@string/male_radio_label"
+                android:textSize="20sp" />
         </RadioGroup>
 
         <LinearLayout
@@ -146,11 +152,12 @@
                 android:id="@+id/input_class"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:height="50dp"
                 android:hint="@string/classYear_input_hint"
                 android:importantForAutofill="no"
                 android:inputType="date"
-                android:maxWidth="488dp" />
+                android:maxWidth="488dp"
+                android:textColorHint="#8D6E63"
+                android:textSize="20sp" />
             <!-- TODO: Check number includes everything from original -->
         </LinearLayout>
 
@@ -170,11 +177,12 @@
                 android:id="@+id/input_major"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:height="50dp"
                 android:hint="@string/major_input_hint"
                 android:importantForAutofill="no"
                 android:inputType="text"
-                android:maxWidth="488dp" />
+                android:maxWidth="488dp"
+                android:textColorHint="#8D6E63"
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -191,7 +199,7 @@
                 android:layout_marginEnd="25dp"
                 android:backgroundTint="@android:color/holo_red_light"
                 android:text="@string/cancel_button_text"
-                android:textColor="@color/white" />
+                android:textColor="#212121" />
 
             <Button
                 android:id="@+id/button_save_info"

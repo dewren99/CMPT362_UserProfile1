@@ -1,7 +1,7 @@
-<resources>
-    <string name="app_name">Deniz_Evrendilek_UserProfile1</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="Typos">Deniz_Evrendilek_UserProfile1</string>
     <string name="profile_pic_title">Profile Picture</string>
-    <string name="profile_pic_select">Profile Picture</string>
+    <string name="profile_pic_select">Change Picture</string>
     <string name="name_input_label">Name</string>
     <string name="name_input_hint">Your Name</string>
     <string name="email_input_label">Email</string>
