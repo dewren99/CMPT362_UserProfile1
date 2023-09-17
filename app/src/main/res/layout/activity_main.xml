@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -17,19 +18,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Profile Picture" />
+                android:text="@string/profile_pic_title" />
 
             <ImageView
                 android:id="@+id/image_view_profile_picture"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:contentDescription="@string/profile_pic_title"
                 android:src="@drawable/el_gato_drawable" />
 
             <Button
                 android:id="@+id/select_picture_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Select Picture" />
+                android:text="@string/profile_pic_select" />
         </LinearLayout>
 
         <LinearLayout
@@ -42,15 +44,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="60dp"
-                android:text="Name" />
+                android:text="@string/name_input_label" />
 
             <EditText
                 android:id="@+id/input_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:height="50dp"
-                android:contentDescription="Enter Name"
-                android:hint="Your Name"
+                android:autofillHints="name"
+                android:hint="@string/name_input_hint"
                 android:inputType="text"
                 android:maxWidth="488dp" />
         </LinearLayout>
@@ -65,16 +67,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="60dp"
-                android:inputType="textEmailAddress"
-                android:text="Email" />
+                android:text="@string/email_input_label" />
 
             <EditText
                 android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:height="50dp"
-                android:contentDescription="Enter Email"
-                android:hint="Your Email"
+                android:hint="@string/email_input_hint"
+                android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
                 android:maxWidth="488dp" />
         </LinearLayout>
@@ -89,17 +90,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="60dp"
-                android:hint="Your Phone Number"
-                android:inputType="phone"
-                android:text="Phone" />
+                android:text="@string/phone_input_label" />
 
             <EditText
                 android:id="@+id/input_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:height="50dp"
-                android:contentDescription="Enter Phone"
-                android:hint="Your Phone Number"
+                android:autofillHints="phone"
+                android:hint="@string/phone_number_input_hint"
                 android:inputType="phone"
                 android:maxWidth="488dp" />
         </LinearLayout>
@@ -114,21 +113,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="60dp"
-                android:text="Gender" />
+                android:text="@string/gender_radio_label" />
 
             <RadioButton
                 android:id="@+id/radio_gender_female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onRadioButtonClicked"
-                android:text="Female" />
+                android:text="@string/female_radio_label" />
 
             <RadioButton
                 android:id="@+id/radio_gender_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onRadioButtonClicked"
-                android:text="Male" />
+                android:text="@string/male_radio_label" />
         </RadioGroup>
 
         <LinearLayout
@@ -141,15 +140,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="60dp"
-                android:text="Class" />
+                android:text="@string/class_input_label" />
 
             <EditText
                 android:id="@+id/input_class"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:height="50dp"
-                android:contentDescription="Enter Class"
-                android:hint="eg. 2012"
+                android:hint="@string/classYear_input_hint"
+                android:importantForAutofill="no"
                 android:inputType="date"
                 android:maxWidth="488dp" />
             <!-- TODO: Check number includes everything from original -->
@@ -165,15 +164,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:width="60dp"
-                android:text="Major" />
+                android:text="@string/major_input_label" />
 
             <EditText
                 android:id="@+id/input_major"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:height="50dp"
-                android:contentDescription="Enter Major"
-                android:hint="Your Major"
+                android:hint="@string/major_input_hint"
+                android:importantForAutofill="no"
                 android:inputType="text"
                 android:maxWidth="488dp" />
         </LinearLayout>
@@ -185,18 +184,21 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/button_cancel_save_info"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                android:backgroundTint="@android:color/holo_red_light"
+                android:text="@string/cancel_button_text"
+                android:textColor="@color/white" />
+
+            <Button
                 android:id="@+id/button_save_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="25dp"
-                android:text="Save" />
-
-            <Button
-                android:id="@+id/button_cancel_save_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/holo_red_light"
-                android:text="Cancel" />
+                android:text="@string/save_button_text"
+                tools:ignore="ButtonStyle" />
         </LinearLayout>
 
     </LinearLayout>

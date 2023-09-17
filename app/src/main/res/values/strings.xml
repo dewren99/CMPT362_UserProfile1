@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Deniz_Evrendilek_UserProfile1</string>
+    <string name="profile_pic_title">Profile Picture</string>
+    <string name="profile_pic_select">Profile Picture</string>
+    <string name="name_input_label">Name</string>
+    <string name="name_input_hint">Your Name</string>
+    <string name="email_input_label">Email</string>
+    <string name="email_input_hint">Your Email</string>
+    <string name="phone_input_label">Phone</string>
+    <string name="phone_number_input_hint">Your Phone Number</string>
+    <string name="gender_radio_label">Gender</string>
+    <string name="female_radio_label">Female</string>
+    <string name="male_radio_label">Male</string>
+    <string name="class_input_label">Class</string>
+    <string name="major_input_label">Major</string>
+    <string name="major_input_hint">Your Major</string>
+    <string name="classYear_input_hint">eg. 2012</string>
+    <string name="cancel_button_text">Cancel</string>
+    <string name="save_button_text">Save</string>
 </resources>
