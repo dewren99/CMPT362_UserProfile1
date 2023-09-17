@@ -120,14 +120,14 @@
                 android:id="@+id/radio_gender_female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="radio_button_click"
+                android:onClick="onRadioButtonClicked"
                 android:text="Female" />
 
             <RadioButton
                 android:id="@+id/radio_gender_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="radio_button_click"
+                android:onClick="onRadioButtonClicked"
                 android:text="Male" />
         </RadioGroup>
 
@@ -150,7 +150,7 @@
                 android:height="50dp"
                 android:contentDescription="Enter Class"
                 android:hint="eg. 2012"
-                android:inputType="number"
+                android:inputType="date"
                 android:maxWidth="488dp" />
             <!-- TODO: Check number includes everything from original -->
         </LinearLayout>
