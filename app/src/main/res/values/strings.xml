@@ -17,4 +17,5 @@
     <string name="classYear_input_hint">eg. 2012</string>
     <string name="cancel_button_text">Cancel</string>
     <string name="save_button_text">Save</string>
+    <string name="menu_item_settings">Settings</string>
 </resources>

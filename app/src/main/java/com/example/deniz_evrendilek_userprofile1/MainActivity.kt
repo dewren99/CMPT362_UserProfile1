@@ -9,15 +9,16 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore.ACTION_IMAGE_CAPTURE
-import android.view.View
+import android.view.Menu
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import java.io.File
 import java.io.FileOutputStream
@@ -29,6 +30,9 @@ const val REQUEST_READ_STORAGE = 2
 const val REQUEST_WRITE_STORAGE = 3
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var toolbar: Toolbar
+
     // Buttons | Images
     private lateinit var profilePicImageView: ImageView
     private lateinit var selectImageButton: Button
@@ -49,20 +53,42 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        initToolbar()
         maybeRequestPermissions()
         setupViewVariables()
         loadProfile()
+    }
 
-        // TODO: You will need to add an ImageView for displaying the photo and a button to trigger
-        //  a Dialog, which will ask the user to either use a camera or existing photos as shown
-        //  above (central image). Also, you need to handle screen rotations.
-        //  Recall in the class a screen rotation will trigger onCreate( ), which will remove the
-        //  unsaved pictures in this case. You can utilize onSaveInstanceState( ) to save the
-        //  location of the temporary profile picture and reload it in onCreate().
+    private fun initToolbar() {
+        toolbar = findViewById(R.id.toolbar)
+        toolbar.title = "Profile"
+        toolbar.overflowIcon?.setTint(ContextCompat.getColor(this, R.color.white))
+        setSupportActionBar(toolbar)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        if (profilePicUri != null) {
+            println("onSaveInstanceState profilePicUri: $profilePicUri")
+            outState.putString("profilePicUri", profilePicUri.toString())
+        }
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        profilePicUri = savedInstanceState.getString("profilePicUri", null)?.toUri()
+        if (profilePicUri != null) {
+            profilePicImageView.setImageURI(profilePicUri)
+        }
+        println("onRestoreInstanceState profilePicUri: $profilePicUri")
     }
 
     private fun loadProfile() {
-        // TODO
         val sharedPreferences = getPreferences(Context.MODE_PRIVATE)
         val name = sharedPreferences.getString("nameInput", "")
         val email = sharedPreferences.getString("emailInput", "")
@@ -83,13 +109,13 @@ class MainActivity : AppCompatActivity() {
         inputClass.setText(personClass)
         inputMajor.setText(major)
         if (profilePicUri != null) {
+            println("profilePicUri is valid: $profilePicUri")
             profilePicImageView.setImageURI(profilePicUri)
         }
     }
 
     @SuppressLint("ApplySharedPref")
     private fun saveProfile() {
-        // TODO
         val sharedPref = getPreferences(Context.MODE_PRIVATE)
         val sharedPrefEditor = sharedPref.edit()
 
@@ -103,9 +129,14 @@ class MainActivity : AppCompatActivity() {
         )
         sharedPrefEditor.putString("classInput", formValues["classInput"].toString())
         sharedPrefEditor.putString("majorInput", formValues["majorInput"].toString())
-        sharedPrefEditor.putString("profilePicUri", profilePicUri.toString())
+        if (profilePicUri != null) {
+            sharedPrefEditor.putString(
+                "profilePicUri",
+                profilePicUri.toString()
+            )
+        }
 
-        sharedPrefEditor.commit() // TODO: replace with async version
+        sharedPrefEditor.commit()
     }
 
     private fun displayToastMessage(message: String, duration: Int = Toast.LENGTH_SHORT) {
@@ -185,7 +216,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun getFormValues(): Map<String, Any> {
         println(
-            "" + "${inputName.text}, " + "${inputEmail.text}, " + "${inputPhone.text}, " + "${radioGroupGender.checkedRadioButtonId}, " + "${inputClass.text}, " + "${inputMajor.text}" + ""
+            "${inputName.text}, "
+                    + "${inputEmail.text}, "
+                    + "${inputPhone.text}, "
+                    + "${radioGroupGender.checkedRadioButtonId}, "
+                    + "${inputClass.text}, "
+                    + "${inputMajor.text}"
         )
 
         return mapOf(
@@ -211,30 +247,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * @source: https://developer.android.com/develop/ui/views/components/radiobutton
-     */
-    fun onRadioButtonClicked(view: View) {
-        if (view is RadioButton) {
-            // Is the button now checked?
-            val checked = view.isChecked
-
-            // Check which radio button was clicked
-            when (view.getId()) {
-                R.id.radio_gender_female -> if (checked) {
-                    println("radio_gender_female: ${view.getId()}")
-                }
-
-                R.id.radio_gender_male -> if (checked) {
-                    println("radio_gender_male: ${view.getId()}")
-                }
-            }
-        }
-    }
-
     private fun handleOnSave() {
         println("Save Info")
-        // TODO: Save data to storage
         saveProfile()
         displayToastMessage("Saved!")
         exitApp()
