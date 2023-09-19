@@ -140,6 +140,7 @@
                     android:text="@string/gender_radio_label" />
 
                 <RadioButton
+                    android:id="@+id/radio_button_female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
@@ -147,6 +148,7 @@
                     android:textSize="20sp" />
 
                 <RadioButton
+                    android:id="@+id/radio_button_male"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/male_radio_label"
