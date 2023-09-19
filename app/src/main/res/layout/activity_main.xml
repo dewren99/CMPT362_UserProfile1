@@ -56,7 +56,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layout_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -81,7 +80,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layout_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -106,7 +104,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layout_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -143,7 +140,6 @@
                     android:text="@string/gender_radio_label" />
 
                 <RadioButton
-                    android:id="@+id/radio_gender_female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
@@ -151,7 +147,6 @@
                     android:textSize="20sp" />
 
                 <RadioButton
-                    android:id="@+id/radio_gender_male"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/male_radio_label"
@@ -159,7 +154,6 @@
             </RadioGroup>
 
             <LinearLayout
-                android:id="@+id/layout_class"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -181,11 +175,9 @@
                     android:textColorHint="#8D6E63"
                     android:textSize="20sp"
                     tools:ignore="VisualLintTextFieldSize" />
-                <!-- TODO: Check number includes everything from original -->
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layout_major"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
